@@ -3,8 +3,10 @@
 - [React, Redux and RTK Query](#react-redux-and-rtk-query)
   - [Create project](#create-project)
 
+## Init project
 
-## Create project
 ```sh
 pnpx degit reduxjs/redux-templates/packages/cra-template-redux-typescript ref-rtk-crud
+
+pnpm  add react-router-dom react-toastify
 ```
