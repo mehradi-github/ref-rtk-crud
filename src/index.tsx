@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Add, Contacts, Contact } from "./contact";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import SimpleSnackbar from "./Snakbar";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -22,6 +23,7 @@ root.render(
           <Route path="/" element={<App />} />
         </Routes>
       </BrowserRouter>
+      <SimpleSnackbar />
     </Provider>
   </React.StrictMode>
 );
