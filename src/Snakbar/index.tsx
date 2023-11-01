@@ -1,15 +1,20 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
 
 export default function SimpleSnackbar() {
-  const [open, setOpen] = React.useState(false);
+  interface State extends SnackbarOrigin {
+    open: boolean;
+  }
+  const [state, setState] = React.useState<State>({
+    open: true,
+    vertical: "bottom",
+    horizontal: "right",
+  });
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const { vertical, horizontal, open } = state;
 
   const handleClose = (
     event: React.SyntheticEvent | Event,
@@ -19,7 +24,7 @@ export default function SimpleSnackbar() {
       return;
     }
 
-    setOpen(false);
+    setState({ ...state, open: false });
   };
 
   const action = (
@@ -40,8 +45,8 @@ export default function SimpleSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick}>Open simple snackbar</Button>
       <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
