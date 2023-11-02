@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { useContactsQuery } from "../services/contactsApi";
+import DataTable from "../Datatable";
 
 const Contacts: FC = () => {
   const { data, isLoading, error } = useContactsQuery();
@@ -9,6 +10,12 @@ const Contacts: FC = () => {
   if (isLoading) return <h3>Loading ...</h3>;
 
   data ? console.log(data) : "";
-  return <div>Contact</div>;
+  return data ? (
+    <div>
+      <DataTable data={data.data} />
+    </div>
+  ) : (
+    <div> No Result !</div>
+  );
 };
 export default Contacts;
