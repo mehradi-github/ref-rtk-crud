@@ -17,8 +17,8 @@ root.render(
       <BrowserRouter>
         <Routes>
           {/* <Route path="/contact/view/:id" element={<Contact />} /> */}
-          <Route path="/contact/edit/:id" element={<Contact />} />
-          <Route path="/contact/add" element={<Contact />} />
+          <Route path="/contact/:id" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/" element={<App />} />
         </Routes>

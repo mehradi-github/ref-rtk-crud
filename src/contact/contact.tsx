@@ -4,10 +4,14 @@ import React, {
   FC,
   FormEvent,
   FormEventHandler,
+  Fragment,
   useState,
 } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Contact as contactModel } from "../model/contact.model";
+import { Stack, Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useDeleteContactMutation } from "../services/contactsApi";
 
 const initialState: contactModel = {
   id: "",
@@ -18,9 +22,11 @@ const initialState: contactModel = {
 const Contact: FC = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const id = params["id"];
+  const id: string | undefined = params["id"];
   const [formValue, setFormValue] = useState(initialState);
   const { name, email, contact } = formValue;
+  const [deleteContact] = useDeleteContactMutation();
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (
     e: FormEvent<HTMLFormElement>
   ) => {
@@ -36,11 +42,46 @@ const Contact: FC = () => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };
+  const handleDelete = async (id: string) => {
+    await deleteContact(id);
+    //TODO: Showing Notify
+  };
+
   return (
     <div>
-      <Link to="/contacts">Back</Link>
+      {/* <Link to="/contacts">Back</Link> */}
+      <Stack direction="row" spacing={2} justifyContent={"flex-end"}>
+        <Button
+          variant="text"
+          onClick={() => {
+            navigate("/contacts");
+          }}
+        >
+          Back
+        </Button>
+
+        {id ? (
+          <Fragment>
+            <Button variant="contained" color="success">
+              Save
+            </Button>
+            <Button
+              variant="outlined"
+              color="error"
+              startIcon={<DeleteIcon />}
+              onClick={() => handleDelete(id)}
+            >
+              Delete
+            </Button>
+          </Fragment>
+        ) : (
+          <Button variant="contained" color="primary">
+            Add
+          </Button>
+        )}
+      </Stack>
       <br />
-      Contact {id}
+      <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input

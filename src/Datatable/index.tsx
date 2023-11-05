@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const DataTable: FC<IResult<Contact[]>> = ({ data }) => {
   const navigate = useNavigate();
   const handleEditClick = (id: GridRowId) => () => {
-    navigate(`/contact/view/${id}`);
+    navigate(`/contact/${id}`);
   };
   // const handleDeleteClick = (id: GridRowId) => () => {
   //   navigate(`/contact/view/${id}`);
