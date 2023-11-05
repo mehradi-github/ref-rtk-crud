@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Add, Contacts, Contact } from "./contact";
+import { Contacts, Contact } from "./contact";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import SimpleSnackbar from "./Snakbar";
@@ -16,9 +16,9 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/contact/add" element={<Add />} />
-          <Route path="/contact/edit/:id" element={<Add />} />
+          {/* <Route path="/contact/view/:id" element={<Contact />} /> */}
           <Route path="/contact/:id" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/" element={<App />} />
         </Routes>

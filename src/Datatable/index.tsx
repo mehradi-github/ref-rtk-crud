@@ -8,10 +8,7 @@ import {
   GridRowId,
 } from "@mui/x-data-grid";
 import { Contact, IResult } from "../model/contact.model";
-import {
-  Edit as EditIcon,
-  DeleteOutline as DeleteIcon,
-} from "@mui/icons-material";
+import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 
 const DataTable: FC<IResult<Contact[]>> = ({ data }) => {
@@ -19,7 +16,9 @@ const DataTable: FC<IResult<Contact[]>> = ({ data }) => {
   const handleEditClick = (id: GridRowId) => () => {
     navigate(`/contact/${id}`);
   };
-  const handleDeleteClick = (id: GridRowId) => () => {};
+  // const handleDeleteClick = (id: GridRowId) => () => {
+  //   navigate(`/contact/view/${id}`);
+  // };
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "name", headerName: "Name", width: 130 },
@@ -40,12 +39,12 @@ const DataTable: FC<IResult<Contact[]>> = ({ data }) => {
             onClick={handleEditClick(id)}
             color="inherit"
           />,
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
+          // ,<GridActionsCellItem
+          //   icon={<DeleteIcon />}
+          //   label="Delete"
+          //   onClick={handleDeleteClick(id)}
+          //   color="inherit"
+          // />,
         ];
       },
     },
