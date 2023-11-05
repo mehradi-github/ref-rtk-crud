@@ -7,9 +7,9 @@ import React, {
   useState,
 } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Contact } from "../model/contact.model";
+import { Contact as contactModel } from "../model/contact.model";
 
-const initialState: Contact = {
+const initialState: contactModel = {
   id: "",
   name: "",
   email: "",
