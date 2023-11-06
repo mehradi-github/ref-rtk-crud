@@ -5,6 +5,7 @@ import React, {
   FormEvent,
   FormEventHandler,
   Fragment,
+  useEffect,
   useState,
 } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -30,7 +31,11 @@ const Contact: FC = () => {
   const { name, email, contact } = formValue;
   const [deleteContact] = useDeleteContactMutation();
   const { data, error } = useContactQuery(id!);
-
+  useEffect(() => {
+    if (error) {
+      //TODO: Showing notification
+    }
+  }, [error]);
   const handleSubmit: FormEventHandler<HTMLFormElement> = (
     e: FormEvent<HTMLFormElement>
   ) => {
