@@ -2,7 +2,7 @@
 
 - [React, Redux and RTK Query](#react-redux-and-rtk-query)
   - [Init project](#init-project)
-  - [Api](#api)
+  - [API](#api)
   - [Material UI](#material-ui)
 
 ## Init project
@@ -13,10 +13,9 @@ pnpm create react-app ref-rtk-crud --template typescript
 pnpm  add @reduxjs/toolkit react-redux react-router-dom react-toastify
 ```
 
-## Api
+## API
 
-You can Free fake API for testing and prototyping.
-[https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/)
+You can use [ref-rtk-crud-api](https://github.com/mehradi-github/ref-rtk-crud-api) project for testing and prototyping. Also you can use free [API](https://jsonplaceholder.typicode.com/)
 
 ## Material UI
 
