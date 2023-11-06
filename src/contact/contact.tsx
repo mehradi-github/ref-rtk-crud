@@ -30,12 +30,18 @@ const Contact: FC = () => {
   const [formValue, setFormValue] = useState(initialState);
   const { name, email, contact } = formValue;
   const [deleteContact] = useDeleteContactMutation();
-  const { data, error } = useContactQuery(id!);
+  const { data: result, error } = useContactQuery(id!);
   useEffect(() => {
     if (error) {
       //TODO: Showing notification
     }
   }, [error]);
+  useEffect(() => {
+    if (result) {
+      console.log(result);
+      setFormValue(result.data);
+    }
+  }, [result]);
   const handleSubmit: FormEventHandler<HTMLFormElement> = (
     e: FormEvent<HTMLFormElement>
   ) => {
