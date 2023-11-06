@@ -9,6 +9,9 @@ export const contactsApi = createApi({
     contacts: builder.query<IResult<Contact[]>, void>({
       query: () => "/contacts",
     }),
+    contact: builder.query<IResult<Contact>, string>({
+      query: (id) => `/contacts/${id}`,
+    }),
     addContact: builder.mutation<{}, Contact>({
       query: (contact) => ({
         url: "/contacts",
@@ -28,6 +31,7 @@ export const contactsApi = createApi({
 
 export const {
   useContactsQuery,
+  useContactQuery,
   useAddContactMutation,
   useDeleteContactMutation,
 } = contactsApi;
