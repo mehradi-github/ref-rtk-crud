@@ -11,7 +11,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Contact as contactModel } from "../model/contact.model";
 import { Stack, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDeleteContactMutation } from "../services/contactsApi";
+import {
+  useContactQuery,
+  useDeleteContactMutation,
+} from "../services/contactsApi";
 
 const initialState: contactModel = {
   id: "",
@@ -26,6 +29,7 @@ const Contact: FC = () => {
   const [formValue, setFormValue] = useState(initialState);
   const { name, email, contact } = formValue;
   const [deleteContact] = useDeleteContactMutation();
+  const { data, error } = useContactQuery(id!);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (
     e: FormEvent<HTMLFormElement>
