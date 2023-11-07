@@ -7,23 +7,26 @@ import reportWebVitals from "./reportWebVitals";
 import { Contacts, Contact } from "./contact";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import SimpleSnackbar from "./Snakbar";
+// import SimpleSnackbar from "./snakbar";
+import { SnackbarProvider } from "notistack";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path="/contact/view/:id" element={<Contact />} /> */}
-          <Route path="/contact/:id" element={<Contact />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/" element={<App />} />
-        </Routes>
-      </BrowserRouter>
-      <SimpleSnackbar />
+      <SnackbarProvider maxSnack={3}>
+        <BrowserRouter>
+          <Routes>
+            {/* <Route path="/contact/view/:id" element={<Contact />} /> */}
+            <Route path="/contact/:id" element={<Contact />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/" element={<App />} />
+          </Routes>
+        </BrowserRouter>
+      </SnackbarProvider>
     </Provider>
   </React.StrictMode>
 );

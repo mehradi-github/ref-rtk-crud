@@ -16,6 +16,8 @@ import {
   useContactQuery,
   useDeleteContactMutation,
 } from "../services/contactsApi";
+import { useAppDispatch, useAppSelector } from "../Hooks";
+import { VariantType, useSnackbar } from "notistack";
 
 const initialState: contactModel = {
   id: "",
@@ -31,9 +33,12 @@ const Contact: FC = () => {
   const { name, email, contact } = formValue;
   const [deleteContact] = useDeleteContactMutation();
   const { data: result, error } = useContactQuery(id!);
+
+  const dispatch = useAppDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
     if (error) {
-      //TODO: Showing notification
+      enqueueSnackbar("Error!", { variant: "error" });
     }
   }, [error]);
   useEffect(() => {
